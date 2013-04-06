@@ -8,12 +8,12 @@ Learn more at http://voxeljs.com
 
 # Get it running on your machine
 
-Don't install the npm modules; they are included because it uses a custom version of duplex-emitter. 
+Don't install the npm modules; they are included because voxel-client uses a custom version of duplex-emitter. 
+TODO: create a fork of duplex-emitter to avoid including the node_modules.
 Manually updated JSONStream version to work around Unexpected "\u0000" at position 0 error. Refer to
 https://github.com/pgte/duplex-emitter/issues/4#issuecomment-15699928
 Also added Buffer to the Window scope to make it visible to jsonparse.
 That feels wrong.
-
 
 Run the start script:
 
@@ -21,7 +21,11 @@ Run the start script:
 npm start
 ```
 
-Then point your browser to [http://localhost:8080](http://localhost:8080) and have fun!
+This gets the client running on port 8081.
+
+Install [voxel-server](git://github.com/maxogden/voxel-server.git) and run npm install and npm start for get it running on port 8080.
+
+Then point your browser to [http://localhost:8080](http://localhost:8081) to watch the errors in the javascript console, and (eventually) have fun!
 
 ## How does this work?
 
