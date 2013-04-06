@@ -6,6 +6,10 @@ It does not work yet - it does hit the server, but I need to do a bit more work 
 
 Learn more at http://voxeljs.com
 
+## Status:
+
+4/6/2013: gets playerID and settings from server. See errors in server log.
+
 # Get it running on your machine
 
 Don't install the npm modules; they are included because voxel-client uses a custom version of duplex-emitter. 
@@ -23,9 +27,9 @@ npm start
 
 This gets the client running on port 8081.
 
-Install [voxel-server](git://github.com/maxogden/voxel-server.git) and run npm install and npm start for get it running on port 8080.
+Install [voxel-server](https://github.com/chrisekelley/voxel-server) and run npm install and npm start for get it running on port 8080.
 
-Then point your browser to [http://localhost:8080](http://localhost:8081) to watch the errors in the javascript console, and (eventually) have fun!
+Then point your browser to [http://localhost:8080](http://localhost:8081) to watch the log in the javascript console, and (eventually) have fun!
 
 ## How does this work?
 
