@@ -13,6 +13,10 @@ Still there is work to do; see errors in server log after deleting some voxels.
 
 # Get it running on your machine
 
+```
+npm install
+```
+
 Run the start script:
 
 ```
