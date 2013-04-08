@@ -8,16 +8,10 @@ Learn more at http://voxeljs.com
 
 ## Status:
 
-4/6/2013: gets playerID and settings from server. See errors in server log.
+4/6/2013: gets playerID and settings from server. Game is created in voxel-client from server settings. voxel-hello-client adds a player.
+Still there is work to do; see errors in server log after deleting some voxels.
 
 # Get it running on your machine
-
-Don't install the npm modules; they are included because voxel-client uses a custom version of duplex-emitter. 
-TODO: create a fork of duplex-emitter to avoid including the node_modules.
-Manually updated JSONStream version to work around Unexpected "\u0000" at position 0 error. Refer to
-https://github.com/pgte/duplex-emitter/issues/4#issuecomment-15699928
-Also added Buffer to the Window scope to make it visible to jsonparse.
-That feels wrong.
 
 Run the start script:
 
@@ -30,6 +24,8 @@ This gets the client running on port 8081.
 Install [voxel-server](https://github.com/chrisekelley/voxel-server) and run npm install and npm start for get it running on port 8080.
 
 Then point your browser to [http://localhost:8080](http://localhost:8081) to watch the log in the javascript console, and (eventually) have fun!
+
+If the game does not render, check if the server is running. Voxel-hello-client waits for the settings to be passed before creating a player and rendering the game.
 
 ## How does this work?
 

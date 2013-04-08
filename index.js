@@ -5,7 +5,7 @@ var texturePath = require('painterly-textures')(__dirname)
 var voxel = require('voxel')
 var extend = require('extend')
 var createClient = require('voxel-client')
-
+var game
 
 module.exports = function(opts, setup) {
   setup = setup || defaultSetup
@@ -26,23 +26,33 @@ module.exports = function(opts, setup) {
   opts = extend({}, defaults, opts || {})
 
   // setup the game and add some trees
-  var game = createGame(opts)
-  var container = opts.container || document.body
-  window.game = game // for debugging
-  game.appendTo(container)
-  if (game.notCapable()) return game
+  // var game = createGame(opts)
+//   var container = opts.container || document.body
+//   window.game = game // for debugging
+//   game.appendTo(container)
+//   if (game.notCapable()) return game
   
   var client = createClient("ws://localhost:8080/");
   
-  var createPlayer = player(game)
+  client.emitter.on('settings', function(id) {
+	console.log("Creating player")
+	var container = opts.container || document.body
+	game = window.game
+	game.appendTo(container)
+	if (game.notCapable()) return game
+	
+    var createPlayer = player(game)
 
-  // create the player from a minecraft skin file and tell the
-  // game to use it as the main player
-  var avatar = createPlayer(opts.playerSkin || 'player.png')
-  avatar.possess()
-  avatar.yaw.position.set(2, 14, 4)
+    // create the player from a minecraft skin file and tell the
+    // game to use it as the main player
+    var avatar = createPlayer(opts.playerSkin || 'player.png')
+    avatar.possess()
+    avatar.yaw.position.set(2, 14, 4)
 
-  setup(game, avatar)
+    setup(game, avatar)
+  })
+  
+  
   
   return game
 
