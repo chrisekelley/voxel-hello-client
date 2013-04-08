@@ -2,13 +2,13 @@
 
 This is a fork of voxel-hello-world with the addition of voxel-client, which passes data to voxel-server.
 
-It does not work yet - it does hit the server, but I need to do a bit more work on voxel-client. 
+It is pretty wobbly still - it does hit the server, but I need to do a bit more work on voxel-client. 
 
 Learn more at http://voxeljs.com
 
 ## Status:
 
-4/6/2013: gets playerID and settings from server. Game is created in voxel-client from server settings. voxel-hello-client adds a player.
+4/8/2013: gets playerID and settings from server. Game is created in voxel-client from server settings. voxel-hello-client adds a player.
 Still there is work to do; see errors in server log after deleting some voxels.
 
 # Get it running on your machine
