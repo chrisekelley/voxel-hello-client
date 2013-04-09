@@ -9,21 +9,21 @@ var game
 
 module.exports = function(opts, setup) {
   setup = setup || defaultSetup
-  var defaults = {
-    generate: voxel.generator['Valley'],
-    chunkDistance: 2,
-    materials: [
-      ['grass', 'dirt', 'grass_dirt'],
-      'obsidian',
-      'brick',
-      'grass',
-      'plank'
-    ],
-    texturePath: texturePath,
-    worldOrigin: [0, 0, 0],
-    controls: { discreteFire: true }
-  }
-  opts = extend({}, defaults, opts || {})
+  // var defaults = {
+//     generate: voxel.generator['Valley'],
+//     chunkDistance: 2,
+//     materials: [
+//       ['grass', 'dirt', 'grass_dirt'],
+//       'obsidian',
+//       'brick',
+//       'grass',
+//       'plank'
+//     ],
+//     texturePath: texturePath,
+//     worldOrigin: [0, 0, 0],
+//     controls: { discreteFire: true }
+//   }
+   opts = extend({}, opts || {})
 
   // setup the game and add some trees
   // var game = createGame(opts)
@@ -36,9 +36,9 @@ module.exports = function(opts, setup) {
   
   client.emitter.on('settings', function(id) {
 	console.log("Creating player")
-	var container = opts.container || document.body
+	//var container = opts.container || document.body
 	game = window.game
-	game.appendTo(container)
+	//game.appendTo(container)
 	if (game.notCapable()) return game
 	
     var createPlayer = player(game)
