@@ -9,36 +9,15 @@ var game
 
 module.exports = function(opts, setup) {
   setup = setup || defaultSetup
-  // var defaults = {
-//     generate: voxel.generator['Valley'],
-//     chunkDistance: 2,
-//     materials: [
-//       ['grass', 'dirt', 'grass_dirt'],
-//       'obsidian',
-//       'brick',
-//       'grass',
-//       'plank'
-//     ],
-//     texturePath: texturePath,
-//     worldOrigin: [0, 0, 0],
-//     controls: { discreteFire: true }
-//   }
-   opts = extend({}, opts || {})
-
-  // setup the game and add some trees
-  // var game = createGame(opts)
-//   var container = opts.container || document.body
-//   window.game = game // for debugging
-//   game.appendTo(container)
-//   if (game.notCapable()) return game
+  opts = extend({}, opts || {})
   
   var client = createClient("ws://localhost:8080/");
   
-  client.emitter.on('settings', function(id) {
-	console.log("Creating player")
-	//var container = opts.container || document.body
+  client.emitter.on('sentInitialChunks', function(id) {
+	console.log("Attaching to the container and creating player")
+	var container = opts.container || document.body
 	game = window.game
-	//game.appendTo(container)
+	game.appendTo(container)
 	if (game.notCapable()) return game
 	
     var createPlayer = player(game)
@@ -51,8 +30,6 @@ module.exports = function(opts, setup) {
 
     setup(game, avatar, client)
   })
-  
-  
   
   return game
 
@@ -86,9 +63,9 @@ function defaultSetup(game, avatar, client) {
         position = blockPosErase
         if (position) {
 			game.setBlock(position, 0)
-			var point = {x: position[0], y: position[1], z: position[2]}
-			console.log("Erasing point at " + JSON.stringify(point))
-			client.emitter.emit('set', point, 0)
+			//var point = {x: position[0], y: position[1], z: position[2]}
+			console.log("Erasing point at " + JSON.stringify(position))
+			client.emitter.emit('set', position, 0)
 		}
       }
     })
