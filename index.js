@@ -6,6 +6,8 @@ var voxel = require('voxel')
 var extend = require('extend')
 var createClient = require('voxel-client')
 var game
+// TODO:- Figure out why it is necessary to expose Buffer in this way. For use with jsonparse in duplex-emitter. This does not feel right.
+window.Buffer = require('buffer').Buffer;
 
 module.exports = function(opts, setup) {
   setup = setup || defaultSetup
@@ -13,7 +15,7 @@ module.exports = function(opts, setup) {
   
   var client = createClient("ws://localhost:8080/");
   
-  client.emitter.on('sentInitialChunks', function(id) {
+  client.emitter.on('noMoreChunks', function(id) {
 	console.log("Attaching to the container and creating player")
 	var container = opts.container || document.body
 	game = window.game
@@ -63,8 +65,6 @@ function defaultSetup(game, avatar, client) {
         position = blockPosErase
         if (position) {
 			game.setBlock(position, 0)
-			//var point = {x: position[0], y: position[1], z: position[2]}
-			console.log("Erasing point at " + JSON.stringify(position))
 			client.emitter.emit('set', position, 0)
 		}
       }
